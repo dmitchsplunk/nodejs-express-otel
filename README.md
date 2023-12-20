@@ -1,16 +1,29 @@
 # nodejs-express-otel
 
-# install dependencies 
+This is a simple node.js application that uses the express framework.  It's built with webpack and deployed as a Docker container.  It's instrumented with the Splunk distribution of OpenTelemetry JS. 
+
+### Install dependencies 
+````
 npm install express
 npm install @splunk/otel
 sudo npm install -g webpack
 npm install webpack webpack-cli --save-dev
+````
 
-# build the app with webpack 
+### Build the app with webpack 
+
+````
 npm run build 
+````
 
-# build a docker image 
+### Build a docker image 
+
+````
 docker build -t nodejs-express-otel .
+````
 
-# run the application in docker 
+### Run the application in docker 
+
+````
 docker run -p 8080:8080 -d nodejs-express-otel
+````
