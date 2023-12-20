@@ -1,21 +1,8 @@
-FROM node:14.21.3-alpine3.17 as builder
+FROM node:14.21.3-alpine3.17
 
-RUN mkdir -p /app
 WORKDIR /app
-
-COPY package*.json .
-RUN npm install
 
 COPY . .
-
-RUN npm run build
-
-FROM node:14.21.3-alpine3.17 as final
-
-WORKDIR /app
-
-#COPY --from=builder /app .
-COPY --from=builder /app/dist/final.js /app/dist/final.js
 
 ENV OTEL_SERVICE_NAME=nodejs-express-otel
 ENV OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:4317
