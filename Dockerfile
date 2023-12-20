@@ -2,8 +2,10 @@ FROM node:14.21.3-alpine3.17
 
 WORKDIR /app
 
-COPY package*.json .
-RUN npm install
+# need to install dependencies that aren't included in the webpack bundle
+RUN npm install @splunk/otel
+RUN npm install express
+
 COPY dist/final.js .
 
 ENV OTEL_SERVICE_NAME=nodejs-express-otel
